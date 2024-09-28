@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus Viewer 1.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #2f3e50;
+        color: white;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .control-panel {
+        position: absolute;
+        bottom: 2.5%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(20px);
+        padding: 10px;
+        border-radius: 9999px;
+        display: flex;
+        gap: 10px;
+        z-index: 30;
+      }
+      /* Стиль кнопки */
+      .button {
+        padding: 8px 16px;
+        font-size: 14px;
+        background-color: rgba(255, 255, 255, 0.6);
+        border: 1px solid #d1d5db;
+        border-radius: 9999px;
+        cursor: pointer;
+        transition: background-color 0.1s ease-in-out, backdrop-filter 0.1s ease-in-out;
+      }
+      .button:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(5px);
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <model-viewer
+    id="model-viewer"
+    src=""
+    alt="GLTF модель"
+    camera-controls
+    camera-projection="perspective"
+    shadow-intensity="1"
+    style="width: 100vw; height: 100vh;"
+    environment-image="neutral"
+    auto-rotate
+    exposure="1"
+  >
+  </model-viewer>
+    <!-- Панель управления -->
+    <div class="control-panel">
+      <!-- Кнопка для добавления модели -->
+      <input type="file" id="model-input" accept=".glb, .gltf" class="hidden">
+      <button id="add-model" class="button">Upload GLTF</button>
+    </div>
+    <!-- Подключаем основной скрипт -->
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
